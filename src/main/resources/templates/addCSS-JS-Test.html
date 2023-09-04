@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add CSS and JS Thymeleaf</title>
+    <link th:href="@{/css/test.css}" rel="stylesheet">
+  <script type="text/javascript" th:src="@{/js/testActions.js}"></script>
+</head>
+<body>
+  <h2>Test CSS and JS</h2>
+   <p>
+     Apply  <strong> special </strong> style
+   </p>
+
+<button type="button" th:onclick="demo()">Show Alert!</button>
+
+</body>
+</html>

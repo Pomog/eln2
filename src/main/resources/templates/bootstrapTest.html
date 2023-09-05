@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap With Thymeleaf</title>
+  <!-- Latest compiled and minified CSS -->
+  <link th:href="@{/css/bootstrapMin.CSS}" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Age</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="person : ${people}">
+              <td th:text="${person.id}">ID</td>
+              <td th:text="${person.firstName}">First Name</td>
+              <td th:text="${person.lastName}">Last Name</td>
+              <td th:text="${person.age}">Age</td>
+            </tr>
+          </tbody>
+      </div>
+    </div>
+</body>
+</html>

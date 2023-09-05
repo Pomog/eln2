@@ -25,6 +25,12 @@
               <td th:text="${person.firstName}">First Name</td>
               <td th:text="${person.lastName}">Last Name</td>
               <td th:text="${person.age}">Age</td>
+
+              <td>
+                <a class="btn btn-primary" th:if="${person.age} > 18">UPDATE</a>
+                <a class="btn btn-primary" th:if="${person.age} > 18">DELETE</a>
+                <a class="btn btn-primary" th:unless="${person.age} > 18">VIEW</a>
+              </td>
             </tr>
           </tbody>
       </div>

@@ -28,8 +28,8 @@
 
               <td>
                 <a class="btn btn-primary" th:if="${person.age} > 18">UPDATE</a>
-                <a class="btn btn-primary" th:if="${person.age} > 18">DELETE</a>
-                <a class="btn btn-primary" th:unless="${person.age} > 18">VIEW</a>
+                <a class="btn btn-danger" th:if="${person.age} > 18">DELETE</a>
+                <a class="btn btn-success" th:unless="${person.age} > 18">VIEW</a>
               </td>
             </tr>
           </tbody>

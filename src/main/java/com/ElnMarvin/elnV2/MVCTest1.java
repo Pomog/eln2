@@ -5,6 +5,7 @@ import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.MDLV2000Reader;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,6 +69,8 @@ public class MVCTest1 {
             throw new RuntimeException(e);
         }
         System.out.println(molecule.getAtomCount());
+        AtomContainerManipulator.convertImplicitToExplicitHydrogens(molecule);
+        System.out.printf("ExplicitHydrogens: %d%n", molecule.getAtomCount());
 
         // Redirect to a success page or another view
         return "sucsessGetMol"; // Create a "success.html" view for displaying a success message

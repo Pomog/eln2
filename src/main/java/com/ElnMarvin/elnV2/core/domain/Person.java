@@ -1,4 +1,4 @@
-package com.ElnMarvin.elnV2.domain;
+package com.ElnMarvin.elnV2.core.domain;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

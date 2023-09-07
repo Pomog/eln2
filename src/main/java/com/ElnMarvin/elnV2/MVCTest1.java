@@ -1,10 +1,13 @@
 package com.ElnMarvin.elnV2;
 
-import com.ElnMarvin.elnV2.domain.Person;
+import com.ElnMarvin.elnV2.core.domain.Person;
+import com.ElnMarvin.elnV2.core.domain.StructureData;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.MDLV2000Reader;
+import org.openscience.cdk.smiles.SmiFlavor;
+import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,7 +62,6 @@ public class MVCTest1 {
 
     @PostMapping("/submitMolsource")
     public String submitMolsource(@RequestParam("molsource") String molsource, Model model) {
-        System.out.println(molsource);
 
         MDLV2000Reader mdlv2000Reader = new MDLV2000Reader(new StringReader(molsource));
         IAtomContainer molecule;
@@ -68,9 +70,19 @@ public class MVCTest1 {
         } catch (CDKException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(molecule.getAtomCount());
+
+        SmilesGenerator smigen = new SmilesGenerator(SmiFlavor.UseAromaticSymbols);
+        try {
+            String smiles = smigen.create(molecule);
+            System.out.println("SMILES: " + smiles);
+        } catch (CDKException e) {
+            throw new RuntimeException(e);
+        }
+
         AtomContainerManipulator.convertImplicitToExplicitHydrogens(molecule);
-        System.out.printf("ExplicitHydrogens: %d%n", molecule.getAtomCount());
+        StructureData structureData = new StructureData(molecule);
+        System.out.println(structureData.getBruttoFormula());
+        System.out.printf("MW [%.2f]%n", structureData.getMW());
 
         // Redirect to a success page or another view
         return "sucsessGetMol"; // Create a "success.html" view for displaying a success message
